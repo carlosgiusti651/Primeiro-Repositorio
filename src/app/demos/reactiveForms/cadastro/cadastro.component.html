@@ -1,0 +1,104 @@
+<div class="container main-container">
+    <h4>Demo Cadastro</h4>
+    <hr />
+    <!--Formulario Inicio-->
+    <form novalidate (ngSubmit)="adicionarUsuario()" [formGroup]="cadastroForm">
+        <div class="form-horizontal">
+
+            <div class="form-group">
+                <label class="col-md-2 control-label" for="nome">Nome Completo</label>
+                <div class="col-md-10">
+
+                    <!-- para icone mostrado no formulario -->
+                    <input class="form-control" 
+                    id="nome" 
+                    type="text" 
+                    placeholder="Nome (requerido)" 
+                    formControlName="nome"
+                    [ngClass]="{'is-invalid': cadastroForm.get('nome')?.errors && (cadastroForm.get('nome')?.dirty || cadastroForm.get('nome').touched)}" />
+
+                     <!-- aparecer para preencher formulario -->
+                    <span class="text-danger" *ngIf="cadastroForm.get('nome')?.errors?.name  && (cadastroForm.get('nome')?.dirty || cadastroForm.get('nome').touched)">
+                        <p>Preencha o campo nome</p>
+                    </span>
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <label class="col-md-2 control-label">CPF</label>
+                <div class="col-md-10">
+                    <input class="form-control" id="cpf" type="text" placeholder="CPF (requerido)" formControlName="cpf"  cpf [textMask]="{mask: MASKS.cpf.textMask}" />
+                    <span class="text-danger" *ngIf="cadastroForm.get('cpf')?.errors?.cpf  && (cadastroForm.get('cpf')?.dirty || cadastroForm.get('cpf').touched)">
+                        <p>CPF inválido</p>
+                    </span>
+                    
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <label class="col-md-2 control-label">E-mail</label>
+                <div class="col-md-10">
+                    
+                    <!-- para icone mostrado no formulario -->
+                    <input class="form-control" 
+                    id="email" 
+                    type="text" 
+                    placeholder="E-mail (requerido)" 
+                    formControlName="email"
+                    [ngClass]="{'is-invalid': cadastroForm.get('email')?.errors && (cadastroForm.get('email')?.dirty || cadastroForm.get('email').touched)}" required/>
+
+
+                    <!-- aparecer para preencher formulario -->
+                    <span class="text-danger" *ngIf="cadastroForm.get('email')?.errors && (cadastroForm.get('email')?.dirty || cadastroForm.get('email').touched)">
+                        <p>Preencha o campo email</p>
+                    </span>
+
+                    
+                    <!-- para aparecer, formulario invalido -->
+                    <span class="text-danger" *ngIf="cadastroForm.get('email')?.errors?.email && (cadastroForm.get('email')?.dirty || cadastroForm.get('email').touched)">
+                        <p>E-mail em formato inválido</p>
+                    </span>
+
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <label class="col-md-2 control-label">Senha</label>
+                <div class="col-md-10">
+                    <input class="form-control" id="senha" type="password" placeholder="Senha (requerido)" formControlName="senha"/>
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <label class="col-md-2 control-label">Confirmar a Senha</label>
+                <div class="col-md-10">
+                    <input class="form-control" id="confirmar_a_" type="password" placeholder="Confirmação (requerido)" formControlName="senhaConfirmacao"/>
+                </div>
+            </div>
+
+            <!-- submetedor -->
+            <div class="form-group">
+                <div class="col-md-4 col-md-offset-2">
+                    <span><button class="btn btn-success" id="Registrar"  type="submit">Registrar</button></span>
+                </div>
+            </div>
+
+
+
+            <!-- validadores de formulario -->
+            <div class="form-group">
+                <div class="col-md-4 col-md-offset-2">
+                    <p>Formulario valido: {{ cadastroForm.valid }}</p>
+                    <p>Formulario Tocado: {{ cadastroForm.touched }}</p>
+                    <p>Formulario Sujo: {{ cadastroForm.dirty }}</p>
+                    <p>Formulario: {{ formResult }}</p>
+                </div>
+            </div>
+        </div>
+    </form>
+    <!--FIM-->
+</div>
